@@ -1,0 +1,6 @@
+Buenas noches mi nombre es Eldy Arely Vasquez, soy Programadora Web Junior y el dia de hoy les vengo a presentar una aplicacion que nos ayudara en el dia a dia tanto en el hogar como en el trabajo o estudio.
+Es una aplicacion que esta en su PRIMERA FASE, llamada Lista de Tareas la cual nos ayuda para organizar tareas que necesitamos realizar en el dia a dia. 
+Esta aplicacion en esta PRIMERA FASE nos muestra la lista de tareas que vamos a realizar y en la parte izquierda de cada tarea tenemos un cuadro pequeño en donde se puede marcar si la tarea esta realizada o no.
+Hasta el momento solo se han implementado los botones para las funciones agregar, modificar o editar y eliminar las tareas pero aun estan sin funcionamiento. Para la SEGUNDA FASE se implementara la funcionalidad de cada uno de estos botones permitiendonos interactuar mas facilmente con la aplicacion.
+Esta aplicacion sera muy util para cualquier tipo de persona y para cualquier tipo de tareas que estas personas vayan a realizar ayudandolas para llevar un control, organizar y gestionar la realizacion de estas sin importar si es una simple lista de compras, lista de mandados, lista de tareas del trabajo o escuela o simplemente una lista de lugares a donde algun cliente deba visitar.
+Muchas Gracias.
