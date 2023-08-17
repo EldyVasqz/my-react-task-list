@@ -5,15 +5,18 @@ import TaskList from './componentes/TaskList';
 
 function App (){
 
-  // Cree un Hook con un array para controlar la lista de tareas
 
+  // Cree un Hook con un array para controlar la lista de tareas
 const [taskList, settaskList] = useState([
   {id:1,
-  task: 'Alistarme', state:true},
+  task: 'Alistarme', 
+  state:true},
   {id:2,
-  task: 'Asear la casa', state:false},
+  task: 'Asear la casa', 
+  state:false},
   {id:3,
-  task: 'Hacer las tareas',state:false},
+  task: 'Hacer las tareas',
+  state:false},
   {id:4,
   task: 'Trabajar',state:false}
 ])
@@ -23,7 +26,7 @@ const [taskList, settaskList] = useState([
   <div>
     <h1>Lista de Tareas</h1>
     <TaskList todos={taskList}></TaskList>
-  </div>
+    </div>
   )
 
 }
