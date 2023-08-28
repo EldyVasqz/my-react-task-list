@@ -32,7 +32,7 @@ export default function Task({taskName, state, todos, id})
 		
     }, [ checkState ])
 
-
+	
 	return(
 		<div 
 		className="container">

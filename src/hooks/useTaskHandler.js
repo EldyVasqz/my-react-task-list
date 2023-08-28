@@ -1,12 +1,27 @@
-import { useState } from "react";
-import TaskList from "../componentes/TaskList";
-export function useTaskHandler (){
+import { useEffect, useState } from "react";
+export function useTaskHandler (initialTasks){
 
 // Cree un hook con 3 funciones. Agregar, eliminar y modificar con su respectivo retorno
-    const [taskList, setTaskList] = useState([]);
+    const [taskList, setTaskList] = useState(initialTasks);
 
-    const newTask = (tarea) => {
-        const newTask={id:Date.now(), taskName:tarea, state:false}
+
+    useEffect(() => {
+        localStorage.setItem('taskList', JSON.stringify(taskList));
+      }, [taskList]);
+
+
+
+
+
+
+
+
+    const newTask = (id, tarea, descripcion) => {
+       
+        if(id==''){
+           id=Date.now()
+        }
+        const newTask={id:id, taskName:tarea, state:false, descripcion:descripcion}
 
         setTaskList([...taskList, newTask]);
     };
