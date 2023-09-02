@@ -1,13 +1,17 @@
-import { useState } from 'react';
+
 import './App.css'
-import Header from './componentes/Header';
+
 import TaskList from './componentes/TaskList';
+import { Menu } from './componentes/Menu';
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import SobreNosotros from './componentes/SobreNosotros';
+import Home from './componentes/Home';
 
 function App (){
 
 
   // Cree un Hook con un array para controlar la lista de tareas
-const [taskList, settaskList] = useState([
+const taskList=[
   {id:1,
   task: 'Alistarme', 
   state:true},
@@ -19,13 +23,23 @@ const [taskList, settaskList] = useState([
   state:false},
   {id:4,
   task: 'Trabajar',state:false}
-])
+]
   return (
 
 //Llame el componente taskList enviandole la lista de tareas
   <div>
-    <h1>Lista de Tareas</h1>
-    <TaskList todos={taskList}></TaskList>
+    
+    <BrowserRouter>
+    <div className="contenedorInterfaz"> 
+          <Menu />
+          <Routes>
+          <Route path="/home" element={<Home/>}/>
+          <Route path="/SobreNosotros" element={<SobreNosotros/>}/>
+          <Route path="/Tareas" element={<TaskList/>}/>
+        </Routes>
+        </div>  
+        </BrowserRouter>
+
     </div>
   )
 

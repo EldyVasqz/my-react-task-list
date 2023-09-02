@@ -1,45 +1,31 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 export function useTaskHandler (initialTasks){
 
 // Cree un hook con 3 funciones. Agregar, eliminar y modificar con su respectivo retorno
     const [taskList, setTaskList] = useState(initialTasks);
 
 
-    useEffect(() => {
-        localStorage.setItem('taskList', JSON.stringify(taskList));
-      }, [taskList]);
-
-
-
-
-
-
-
-
-    const newTask = (id, tarea, descripcion) => {
-       
+//Cree la funcion para aagregar nuevas tareas
+    const newTask = (id, tarea, descripcion, state) => {
         if(id==''){
            id=Date.now()
         }
-        const newTask={id:id, taskName:tarea, state:false, descripcion:descripcion}
-
+        const newTask={id:id, taskName:tarea, state:state, descripcion:descripcion}
         setTaskList([...taskList, newTask]);
     };
 
     const deleteTask = (tareaId) => {
         const updatedTareas = taskList.filter((tarea) => (tarea.id !== tareaId));
-        console.log(updatedTareas)
+        console.log(updatedTareas)    
         setTaskList(updatedTareas);
     };
 
-    const modifyTask = (tareaId, updatedTarea) => {
-        const updatedTareas = taskList.map(tarea =>
-        tarea.id === tareaId? updatedTarea : tarea);
-
-         const newTareas = taskList.filter((tarea) => (tarea.id !== tareaId));
-        setTaskList(newTareas);
-    };
-
-return ([taskList, newTask, deleteTask, modifyTask]) 
-   
+    //Se creo una funcion para modificar el estado de la tarea elegida
+    const modifyState = (tareaId) => {   
+       console.log(tareaId)
+       let index=taskList.findIndex(task =>task.id == tareaId);
+       taskList[index].state=!taskList[index].state	
+       setTaskList(taskList)
+   };
+return ([taskList, newTask, deleteTask, modifyState])   
 }
