@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react';
 import { BrowserRouter, Routes, Route, } from 'react-router-dom';
 import { ChakraProvider, CSSReset, Box, Center, } from '@chakra-ui/react';
-import { Grid, GridItem, Heading, Text, Button } from '@chakra-ui/react';
+import { Grid, GridItem, Text} from '@chakra-ui/react';
 
 import Home from './componentes/Home';
 import SobreNosotros from './componentes/SobreNosotros';
@@ -25,13 +25,15 @@ function App() {
         <GridItem colSpan={12}>
           <Header/>
         </GridItem>
-
+{/* <GridItem colSpan={12}>
+<Home/>
+</GridItem> */}
         
         <GridItem colSpan={12}>
           <Box p={4} borderWidth="1px" boxShadow="md">
                       <Suspense fallback="Cargando...">
               <Routes>
-                <Route path="/home" element={<Home />} />
+                <Route path="/" element={<Home />} />
                 <Route path="/SobreNosotros" element={<SobreNosotros />} />
                 <Route path="/Tareas" element={<TaskList />} />
               </Routes>
@@ -39,13 +41,12 @@ function App() {
           </Box>
         </GridItem>
 
-        {/* Pie de página */}
         <GridItem colSpan={12}>
           <Box p={4} borderWidth="1px" boxShadow="md">
             <Text 
             
-            fontFamily="Comic Sans MS" fontSize="md" textAlign="center">
-              © 2023 Mi Lista de Tareas. Todos los derechos reservados.
+            fontFamily="Comic Sans MS" fontSize="sm" textAlign="center"> 
+© 2023 Mi Lista de Tareas. Todos los derechos reservados. ¡Gracias por visitarnos!
             </Text>
           </Box>
         </GridItem>

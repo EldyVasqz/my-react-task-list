@@ -5,6 +5,8 @@ function Home() {
   return (
     
       <Box
+      color="black"
+      backgroundColor="#FBD38D"
       flexDirection="column"
       alignItems="center"    
       display="flex" 

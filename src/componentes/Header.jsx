@@ -1,8 +1,10 @@
 import React from "react";
-import { Flex, Heading, Button, Stack, Box, useColorMode, IconButton } from "@chakra-ui/react";
+import { Flex, Heading, Button, Stack, Box, useColorMode, IconButton, Img } from "@chakra-ui/react";
 import portada from '../images/portada.jpg';
+import Titulo from '../images/Titulo.png';
 import { Link } from "react-router-dom";
 import { FaMoon, FaSun } from "react-icons/fa";
+
 
 const Header = () => {
 
@@ -10,6 +12,7 @@ const {colorMode, toggleColorMode} = useColorMode();
 
   return (
     <Box bg="red.200" w="100%">
+      
       <Flex
         fontFamily="Comic Sans MS, cursive" 
         as="header"
@@ -40,13 +43,11 @@ const {colorMode, toggleColorMode} = useColorMode();
           color="black" 
           fontWeight="bold"  
           fontFamily="Comic Sans MS, cursive"
-          mt="200px"
-          marginBottom="1rem"
-          borderWidth="2px"
-          borderRadius="full"
-          borderColor="orange" 
-          padding="20px"        >
-          MIS TAREAS DEL DIA
+          mt="50px"
+          marginBottom="-11rem"
+          width='450px'
+         >
+          <Img src={Titulo}></Img>
         </Heading>
         <Stack direction="row" spacing={4} mt="4">
           
@@ -57,7 +58,7 @@ const {colorMode, toggleColorMode} = useColorMode();
             size="sm"
             variant="solid"
             as={Link}
-            to="/home"
+            to="/"
             borderWidth="2px"
             borderRadius="full"
             borderColor="#9C4221"

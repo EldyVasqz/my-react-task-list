@@ -6,6 +6,8 @@ function SobreNosotros() {
 
   return (
     <Box
+      color="black"
+      backgroundColor="#FBD38D"
       flexDirection="column"
       alignItems="center"    
       display="flex" 
@@ -56,7 +58,7 @@ function SobreNosotros() {
           marginBottom="10px" 
           textAlign="justify"
         >
-          Estamos aquí para ayudarte. Si tienes preguntas, comentarios o sugerencias, no dudes en ponerte en contacto con nosotros mandándonos un correo a <Link href="mailto:eldyarely@gmail.com" color={linkColor}>eldyarely@gmail.com</Link>. Tu opinión es importante para nosotros y nos esforzamos por mejorar constantemente nuestra aplicación.
+          Estamos aquí para ayudarte. Si tienes preguntas, comentarios o sugerencias, no dudes en ponerte en contacto con nosotros mandándonos un correo a <Link href="mailto:eldyarely@gmail.com" color="blue">eldyarely@gmail.com</Link>. Tu opinión es importante para nosotros y nos esforzamos por mejorar constantemente nuestra aplicación.
         </Text>
         <Text
           fontSize="16px" 

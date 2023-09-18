@@ -23,10 +23,11 @@ export function useTaskHandler (initialTasks){
     };
     //Se creo una funcion para modificar el estado de la tarea elegida
     const modifyState = (tareaId) => {   
-       console.log(tareaId)
-       let index=taskList.findIndex(task =>task.id == tareaId);
-       taskList[index].state=!taskList[index].state	
+        const updatedTasks = taskList.map((task) =>
+        task.id === tareaId ? { ...task, state: !task.state } : task
+      );
+      setTaskList(updatedTasks);
        localStorage.setItem('taskList', JSON.stringify(taskList));
-      setTaskList(taskList)
+      //setTaskList(taskList)
    };
 return ([taskList, newTask, deleteTask, modifyState])   }

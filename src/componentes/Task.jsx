@@ -7,12 +7,12 @@ export default function Task({todos, descripcion, taskName, state, id, handleDel
 {
 
 	//Cree un hook para controlar el estado de la lista de tareas en checkbox, le asigno el estado que esta en el arreglo original
-	const[checkState, setcheckState]=useState(state)
+	//const[checkState, setcheckState]=useState(state)
 //Cree una funcion para cambiar el estado de mi lista cuando marco el checkbox
-	const checkChange=(status) => {
-		let newState=!status
+	const checkChange=(id) => {
+		//let newState=!status
 	
-		setcheckState(newState)
+		//setcheckState(newState)
 		modifyState(id)
 	}
 	
@@ -20,25 +20,27 @@ export default function Task({todos, descripcion, taskName, state, id, handleDel
 	 
   return (
     <Box
+      backgroundColor="#ED8936"
       marginBottom="2rem"
       borderWidth="2px"
-      borderRadius="full"
+      p='6' 
+      rounded='md' 
+      bg='white'
       borderColor="orange"
-      p="4"
       mb="4"
-      boxShadow={checkState ? 'none' : 'md'} 
+      boxShadow={state ? 'none' : 'md'} 
     >
       <Flex alignItems="center" justifyContent="space-between" marginLeft="20px">
   	<Checkbox
     
-	  isChecked={checkState}
-    onChange={()=>checkChange(checkState)}
+	  isChecked={state}
+    onChange={()=>checkChange(id)}
     colorScheme="green"
-    iconColor={checkState ? 'white' : 'green.500'}
+    iconColor={state ? 'white' : 'green.500'}
     border="green"
   >
     <Text 
-    textDecoration={checkState ? 'line-through' : 'none'} 
+    textDecoration={state ? 'line-through' : 'none'} 
     fontFamily="Comic Sans MS">
       {taskName}
     </Text>
@@ -49,7 +51,7 @@ export default function Task({todos, descripcion, taskName, state, id, handleDel
         alignItems="center"
         >
     <Button
-      onClick={() => handleUpdateTask(id, taskName, descripcion, checkState)}
+      onClick={() => handleUpdateTask(id, taskName, descripcion, state)}
       variant="solid"
       colorScheme="blue"
       size="sm"

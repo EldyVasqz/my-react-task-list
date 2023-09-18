@@ -1,7 +1,8 @@
 import Task from "./Task";
 import { useState } from "react";
 import { useTaskHandler } from "../hooks/useTaskHandler";
-import { Button, Input, Box, Text, WrapItem, Wrap, VStack, Center } from "@chakra-ui/react";
+import { useColorModeValue } from "@chakra-ui/color-mode";
+import { Button, Input, Box, Text, WrapItem, Wrap, VStack} from "@chakra-ui/react";
 import { HiPlus } from 'react-icons/hi';
 
 export default function TaskList() {
@@ -26,6 +27,8 @@ storedTaskList=[]
     const[checkState, setcheckState]=useState(false);
 //Cree la variable error para establecer cual es el error a mostrar 
     const [error, setError]=useState("");
+
+    const placeholderColor = useColorModeValue("gray.500", "gray.300");
 // Cree la funcion de agregar tarea a la lista de tareas
     function handleNewTask () {
         if (task=="" || task.length<3)
@@ -70,7 +73,9 @@ storedTaskList=[]
  
   return (
     
-      <Box 
+      <Box
+      color="black"
+      backgroundColor="#FBD38D" 
       width="100%"
       padding="20px"
 >
@@ -84,7 +89,6 @@ storedTaskList=[]
 {/* Cree la caja de texto con el botón de crear, en el input de ingresar tareas por defecto en el value me va aparecer el nombre de la tarea a modificar */}
               <Input
                   borderWidth="2px"
-                  borderRadius="full"
                   borderColor="orange"
                   w="495px"
                   marginTop="20px"
@@ -96,7 +100,10 @@ storedTaskList=[]
                   onChange={(event) => {
                     setTask(event.target.value);
                   }}
-                  bg="customOrangeDark" 
+                  bg="white"
+                  _placeholder={{
+                   color: placeholderColor,
+                  }} 
                 ></Input>
               </WrapItem>
               <WrapItem>
@@ -104,7 +111,6 @@ storedTaskList=[]
 {/* Cree el input para guardar la descripción de la tarea */}
               <Input
                   borderWidth="2px"
-                  borderRadius="full"
                   borderColor="orange"
                   w="430px"
                   marginTop="20px"
@@ -116,7 +122,10 @@ storedTaskList=[]
                   onChange={(event) => {
                     setDescripcion(event.target.value);
                   }}
-                  bg="customOrangeDark" 
+                  bg="white"
+                  _placeholder={{
+                   color: placeholderColor,
+                  }}
                 ></Input>
               </WrapItem>
               <WrapItem>
