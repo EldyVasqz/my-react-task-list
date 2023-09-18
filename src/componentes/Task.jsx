@@ -1,66 +1,82 @@
-/* eslint-disable react/prop-types */
-import { useState, useEffect } from "react";
-import { HiPencil } from "react-icons/hi2";
-import { FaTrashCan } from "react-icons/fa6";
+import { useState, useEffect } from 'react';
+import { HiPencil } from 'react-icons/hi';
+import { FaTrashCan } from 'react-icons/fa6';
+import { Box, Checkbox, Text, Button, Flex } from '@chakra-ui/react';
 
 export default function Task({todos, descripcion, taskName, state, id, handleDeleteTask, handleUpdateTask, modifyState})
 {
-//Cree un hook para controlar el estado de la lista de tareas en checkbox, le asigno el estado que esta en el arreglo original
+
+	//Cree un hook para controlar el estado de la lista de tareas en checkbox, le asigno el estado que esta en el arreglo original
 	const[checkState, setcheckState]=useState(state)
 //Cree una funcion para cambiar el estado de mi lista cuando marco el checkbox
-	const checkChange=(state) => {
-		let newState
-		if (state==true){
-			newState=false
-		}
-		else {
-			newState=true
-		}
-		
-
-		modifyState(id)
+	const checkChange=(status) => {
+		let newState=!status
+	
 		setcheckState(newState)
+		modifyState(id)
 	}
 	
 //Cree el useEffect para que funcione cuando hago un cambio en el checkbox checkState
-	useEffect(()=>{
-        const newTaskList=JSON.stringify(todos)
-		window.localStorage.setItem("listStorage",newTaskList)
-    }, [todos,checkState]) 
-	return(
-		<div className="container" key={id}>
-
-			
-		<section className="lista">
-
+	 
+  return (
+    <Box
+      marginBottom="2rem"
+      borderWidth="2px"
+      borderRadius="full"
+      borderColor="orange"
+      p="4"
+      mb="4"
+      boxShadow={checkState ? 'none' : 'md'} 
+    >
+      <Flex alignItems="center" justifyContent="space-between" marginLeft="20px">
+  	<Checkbox
+    
+	  isChecked={checkState}
+    onChange={()=>checkChange(checkState)}
+    colorScheme="green"
+    iconColor={checkState ? 'white' : 'green.500'}
+    border="green"
+  >
+    <Text 
+    textDecoration={checkState ? 'line-through' : 'none'} 
+    fontFamily="Comic Sans MS">
+      {taskName}
+    </Text>
+  </Checkbox>
 		
-{/*Envio el parametro del estado al estilo. Si se cumple me llamara el id de tachado de lo contrario queda sin cambios */ }			
-		
-				<p className={`${checkState? 'tachado':''}`}>{taskName}</p>
-				<p className="apunte">{descripcion}</p>
-			
-		</section>
-		<div className="botones">	{/*En el evento onChange del checkbox llamo la funcion para cambiar el estado*/ }
-		
-		<button className="button"> <input checked={checkState} type="checkbox" onChange={()=>checkChange(checkState)}></input></button>
 {/* Cree los botones de modificar y eliminar */}
-		<section>
-		<button
-			onClick={()=>handleUpdateTask(id, taskName, descripcion, checkState)}
-			className="button"><HiPencil 
-			className="icons"/></button>
-		</section>
-		<section className="">
-		
-			
-			<button
-			onClick={()=>handleDeleteTask(id)} 
-			className="button"><FaTrashCan 
-			className="icons"/></button>
-		</section>
-		</div>
-		</div>
-	)
-
+        <Flex 
+        alignItems="center"
+        >
+    <Button
+      onClick={() => handleUpdateTask(id, taskName, descripcion, checkState)}
+      variant="solid"
+      colorScheme="blue"
+      size="sm"
+      fontFamily="Comic Sans MS"
+      leftIcon={<HiPencil />}
+      mr="1rem" 
+    >
+      Editar
+    </Button>
+    <Button
+      onClick={() => handleDeleteTask(id)}
+      variant="solid"
+      colorScheme="red"
+      size="sm"
+      mr="1rem" 
+      fontFamily="Comic Sans MS"
+      leftIcon={<FaTrashCan/>}
+    >
+      Eliminar
+    </Button>
+  </Flex>
+</Flex>
+      {descripcion && (
+        <Text marginLeft="70px" mt="2" fontSize="sm"  fontFamily="Comic Sans MS">
+          {descripcion}
+        </Text>
+      )}
+    </Box>
+  );
 }
-	

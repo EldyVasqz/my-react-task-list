@@ -1,20 +1,15 @@
-/* eslint-disable react/jsx-key */
-import { AiFillPlusCircle } from "react-icons/ai";
 import Task from "./Task";
 import { useState } from "react";
-
 import { useTaskHandler } from "../hooks/useTaskHandler";
+import { Button, Input, Box, Text, WrapItem, Wrap, VStack, Center } from "@chakra-ui/react";
+import { HiPlus } from 'react-icons/hi';
 
-export default function TaskList(){
-    function handleSubmit(event){ 
-        event.preventDefault();
-    }
-
-    
-    let storedTaskList=[]
-    storedTaskList = JSON.parse(localStorage.getItem('listStorage'));
-
-    
+export default function TaskList() {
+  function handleSubmit(event) {
+    event.preventDefault();
+  }
+  let storedTaskList=[]
+    storedTaskList = JSON.parse(localStorage.getItem('taskList'));
      if (storedTaskList==null)
      {
 storedTaskList=[]
@@ -35,7 +30,7 @@ storedTaskList=[]
     function handleNewTask () {
         if (task=="" || task.length<3)
         {
-            setError("Caracteres insuficientes");
+            setError("Caracteres insuficientes. La tarea debe tener mínimo 3 caracteres. Inténtelo nuevamente.");
         }
         else{
 
@@ -43,7 +38,6 @@ storedTaskList=[]
             newTask(taskId, task, descripcion, checkState)
             setTaskId("")
             setTask("")
-            setDescripcion("")
             setcheckState(false)
             setError("");
         } 
@@ -55,34 +49,155 @@ storedTaskList=[]
 // Cree la funcion de modificar tarea de la lista de tareas
      function handleUpdateTask (taskId, taskName, descripcion, state) {
      //Actualice las variables de ingresar tarea  
-     deleteTask(taskId)  
-      
-     setTaskId(taskId)
+        setTaskId(taskId)
         setTask(taskName)
         setDescripcion(descripcion)
-        setcheckState(state)          
+        setcheckState(state)
+        deleteTask(taskId)       
     } 
-    return(
-        <form onSubmit={handleSubmit} className="containerGeneral"> 
+  function renderTask(taskItem) {
+    return (
+      <Box 
+        key={taskItem.id} 
+        marginBottom="10px"
+      >
+        <VStack spacing="4">
+          <Text>{taskItem.task}</Text>
+        </VStack>
+      </Box>
+    );
+  }
+ 
+  return (
+    
+      <Box 
+      width="100%"
+      padding="20px"
+>
+        <form onSubmit={handleSubmit} >
+        <Box 
+        w="100%">
+          <section>
+            <Wrap spacing={2}>
+              <WrapItem>
 
-        <div className="container3">
-            <section className="contenedorTareas">
-{/*Cree la caja de texto con el boton de crear, en el input de ingresar tareas por defecto en el value me va aparecer el nombre de la tarea a modificar*/ }                
-                <input className="tarea" value={task} placeholder="Mi tarea" onChange={(event) => {setTask(event.target.value)}}></input>
-{/*Cree el imput para guardar la descripcion de la tarea*/ }                
-                <input className="descripcion" value={descripcion} placeholder="Apuntes" onChange={(event) => {setDescripcion(event.target.value)}}></input>
-                <button onClick={handleNewTask} className="button"><AiFillPlusCircle className="icons"/></button>
-                <p style={{color:'red'}}>{error}</p>
-{/*Recorro la lista de tareas con map y llamo el componente task para que me imprima el nombre de cada tarea y envio el estado para controlar el estado de cada tarea enviada al checkbox*/ }
-            </section>
-{/*Ordene la lista por id*/}
-           {taskList.sort((x, y) => y.id - x.id).map((todo, index) =>
-            <div key={index}>
-           <Task todos={taskList} descripcion={todo.descripcion} taskName={todo.taskName} state={todo.state}  id={todo.id} handleDeleteTask={handleDeleteTask} handleUpdateTask={handleUpdateTask}  modifyState={modifyState}  ></Task>
-           </div>
-           )
-           }
-           </div>
-            </form>
+{/* Cree la caja de texto con el botón de crear, en el input de ingresar tareas por defecto en el value me va aparecer el nombre de la tarea a modificar */}
+              <Input
+                  borderWidth="2px"
+                  borderRadius="full"
+                  borderColor="orange"
+                  w="495px"
+                  marginTop="20px"
+                  marginLeft="20px"
+                  marginBottom="20px"
+                  fontFamily="Comic Sans MS, cursiva"
+                  value={task}
+                  placeholder="Mi tarea"
+                  onChange={(event) => {
+                    setTask(event.target.value);
+                  }}
+                  bg="customOrangeDark" 
+                ></Input>
+              </WrapItem>
+              <WrapItem>
 
-    )}
+{/* Cree el input para guardar la descripción de la tarea */}
+              <Input
+                  borderWidth="2px"
+                  borderRadius="full"
+                  borderColor="orange"
+                  w="430px"
+                  marginTop="20px"
+                  marginBottom="20px"
+                  className="descripcion"
+                  fontFamily="Comic Sans MS, cursiva"
+                  value={descripcion}
+                  placeholder="Apuntes"
+                  onChange={(event) => {
+                    setDescripcion(event.target.value);
+                  }}
+                  bg="customOrangeDark" 
+                ></Input>
+              </WrapItem>
+              <WrapItem>
+                <Button
+                
+                  marginTop="24px"
+                  onClick={handleNewTask} 
+                  variant="solid"
+                  colorScheme="green"
+                  size="sm"
+                  fontFamily="Comic Sans MS, cursiva"
+                  leftIcon={<HiPlus />}
+                > 
+                  Agregar
+                </Button>
+              </WrapItem>
+            </Wrap>
+            <Text
+
+              alignItems="center"
+              position="initial"
+              right="1rem"
+              fontFamily="Comic Sans MS, cursiva"
+              fontSize="12"
+              marginLeft="39"
+              marginBottom="20px"
+              color="red"
+            >
+              {error}
+             </Text>
+          </section>
+
+  {/* Ordene la lista por id */}
+  <Box >
+{taskList
+  .sort((x, y) => y.id - x.id)
+  .map((todo, index) => (
+    <div key={index}>
+      <Task
+        
+        descripcion={todo.descripcion}
+        taskName={todo.taskName}
+        state={todo.state}
+        id={todo.id}
+        handleDeleteTask={handleDeleteTask}
+        handleUpdateTask={handleUpdateTask}
+        modifyState={modifyState}
+      />
+    </div>
+  ))}
+
+
+          </Box>
+        </Box>
+      </form>
+      
+      {taskList.length === 0 ? (
+        <Box    
+        
+      flexDirection="reverse"
+      right="0"
+      borderBottomEndRadius={80}      
+      padding="1rem"
+      borderRadius="md"
+      marginRight="1rem"
+      marginBottom="1rem"
+    >
+        <Text
+        fontSize="14px"
+        fontFamily="Comic Sans MS"
+        textAlign="right"
+        >No hay tareas guardadas.</Text>
+          </Box>
+      ) : (
+        <VStack spacing="4">
+          {taskList.map((taskItem) => (
+            renderTask(taskItem)
+          ))}
+        </VStack>
+      )}
+      </Box>
+   
+  );
+}
