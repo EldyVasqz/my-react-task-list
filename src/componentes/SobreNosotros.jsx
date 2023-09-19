@@ -34,7 +34,7 @@ function SobreNosotros() {
           marginBottom="10px" 
           textAlign="justify"
         >
-          ¡Hola! Bienvenido a nuestra aplicación "Tareas del día". Estamos aquí para ayudarte. Nuestro objetivo es hacer que tu vida sea más fácil y organizada. Aquí tienes un vistazo a las características que te ofrecemos:
+          ¡Hola! Bienvenido a nuestra aplicación "Mis Tareas del día". Estamos aquí para ayudarte. Nuestro objetivo es hacer que tu vida sea más fácil y organizada. Aquí tienes un vistazo a las características que te ofrecemos:
         </Text>
         <UnorderedList 
           fontSize="16px" 
