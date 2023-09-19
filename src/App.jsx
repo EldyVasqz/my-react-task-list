@@ -46,8 +46,12 @@ function App() {
             <Text 
             
             fontFamily="Comic Sans MS" fontSize="sm" textAlign="center"> 
-© 2023 Mi Lista de Tareas. Todos los derechos reservados. ¡Gracias por visitarnos!
+© 2023 Mis Tareas del dia. Desarrollado por Eldy Vasquez. Todos los derechos reservados.  
+
             </Text>
+            <Text 
+            
+            fontFamily="Comic Sans MS" fontSize="sm" textAlign="center"> ¡Gracias por visitarnos!</Text>
           </Box>
         </GridItem>
       </Grid>
